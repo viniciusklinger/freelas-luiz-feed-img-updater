@@ -4,8 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":  "node src/index.js"
   },
   "author": "Vinicius Klinger",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "jimp": "^0.22.12"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.2"
+  }
 }
