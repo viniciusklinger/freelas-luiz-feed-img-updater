@@ -2,22 +2,29 @@ import Jimp from "jimp";
 
 async function main() {
     try {
-        const img = await Jimp.read("/home/klinger/Workspace/freelas/luiz/feed-img-updater/src/frasson.png");
-        const font = await Jimp.loadFont(Jimp.FONT_SANS_14_BLACK);
+        const img = await Jimp.read("src/test.png");
+        const font = await Jimp.loadFont(Jimp.FONT_SANS_64_BLACK);
+        const text = "Teste de texto que sera escrito na imagem";
+        const maxWidth = 450;
+
+        const textWidth = Jimp.measureText(font, text);
+        const textHeight = Jimp.measureTextHeight(font, text, maxWidth)
+
+        console.log(`width: ${textWidth}\nheight: ${textHeight}`);
 
         img.print(
             font,
             0,
             0,
             {
-                text: "Teste de texto que sera escrito na imagem",
-                alignmentX: Jimp.HORIZONTAL_ALIGN_RIGHT,
+                text: text,
+                alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
                 alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE,
             },
-            200
+            maxWidth
         );
 
-        const res = img.writeAsync(`/home/klinger/Workspace/freelas/luiz/feed-img-updater/src/${new Date().getTime()}.png`);
+        const res = img.writeAsync(`src/${new Date().getTime()}.png`);
 
         console.log('Finito!')
 
